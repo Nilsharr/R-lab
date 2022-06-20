@@ -1,6 +1,7 @@
 from collections import Counter
 import turtle
 from scipy.stats import entropy
+import math
 
 
 class Node:
@@ -79,6 +80,13 @@ def textEntropy(text: str) -> float:
     return None if sum(pk) == 0 else entropy(pk, base=2)
 
 
+def manualTextEntropy(word: str) -> float:
+    # markProbDict contains symbol and it's probability e.g. a: 0.125
+    markProbDict = {key: value / len(word)
+                    for key, value in dict(Counter(word)).items()}
+    return sum([markProbDict[key] * math.log(1 / markProbDict[key], 2) for key in markProbDict])
+
+
 def averageCodeWordLength(word: str, markCodeDict: dict) -> float:
     # markCodeDict contains symbol and it's huffman code e.g. a: '00'
     # markProbDict contains symbol and it's probability e.g. a: 0.125
@@ -101,6 +109,7 @@ if __name__ == '__main__':
      for symbol, code in dict(sorted(markCodeDict.items(), key=lambda x: len(x[1]))).items()]
 
     print(f'Entropy = {textEntropy(word)}')
+    print(f'Manually implemented Entropy = {manualTextEntropy(word)}')
     print(
         f'Average code word length = {averageCodeWordLength(word, markCodeDict)}')
     print(
