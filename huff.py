@@ -19,7 +19,6 @@ def getNodes(node: Node, val='', resultDict={}) -> dict:
     if node.right:
         getNodes(node.right, newVal, resultDict)
     if(not node.left and not node.right):
-        # print(node.symbol, newVal)
         resultDict.update({node.symbol: newVal})
     return resultDict
 
@@ -77,10 +76,7 @@ def drawTree(root: Node):
 def textEntropy(text: str) -> float:
     # we only consider UTF8 characters to compute the text entropy
     pk = list(Counter(text).values())
-    if sum(pk) == 0:
-        return None
-    else:
-        return entropy(pk, base=2)
+    return None if sum(pk) == 0 else entropy(pk, base=2)
 
 
 def averageCodeWordLength(word: str, markCodeDict: dict) -> float:
