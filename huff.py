@@ -74,13 +74,7 @@ def drawTree(root: Node):
     turtle.mainloop()
 
 
-def textEntropy(text: str) -> float:
-    # we only consider UTF8 characters to compute the text entropy
-    pk = list(Counter(text).values())
-    return None if sum(pk) == 0 else entropy(pk, base=2)
-
-
-def manualTextEntropy(word: str) -> float:
+def textEntropy(word: str) -> float:
     # markProbDict contains symbol and it's probability e.g. a: 0.125
     markProbDict = {key: value / len(word)
                     for key, value in dict(Counter(word)).items()}
@@ -109,7 +103,6 @@ if __name__ == '__main__':
      for symbol, code in dict(sorted(markCodeDict.items(), key=lambda x: len(x[1]))).items()]
 
     print(f'Entropy = {textEntropy(word)}')
-    print(f'Manually implemented Entropy = {manualTextEntropy(word)}')
     print(
         f'Average code word length = {averageCodeWordLength(word, markCodeDict)}')
     print(
