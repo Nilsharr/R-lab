@@ -108,5 +108,5 @@ if __name__ == '__main__':
     print(
         f'Average code word length = {averageCodeWordLength(word, markCodeDict)}')
     print(
-        f'Efficency = {round(textEntropy(word) / averageCodeWordLength(word, markCodeDict) * 100, 2)}%')
+        f'Efficiency = {round(textEntropy(word) / averageCodeWordLength(word, markCodeDict) * 100, 2)}%')
     drawTree(node)
